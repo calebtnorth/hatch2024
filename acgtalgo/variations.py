@@ -5,29 +5,28 @@ from subprocess import Popen, PIPE
 
 class FASTA:
 
-    def __init__(self, data):
+    def __init__(self, data:str):
         data_by_line = data.split("\n")
+        self.sequence = "".join(data_by_line[1:]).strip()
 
-        # Extract ID
         regex_identifer = "[A-Z]{2}_\d+.\d+"
         regex_match = search(regex_identifer, data_by_line[0])
-
         if not regex_match:
             raise ValueError(f"No ID found in FASTA file")
         self.id = regex_match.group()
 
-        # Extract sequences
-        self.sequence = "".join(data_by_line[1:]).strip() 
+        if "MTHFR" in data_by_line[0]:
+            self.ref_type = "MTHFR"
 
     @staticmethod
-    def find_variant(seqs:list["FASTA"]) -> int:
+    def find_variant(seqs:list["FASTA"], search_sensitivity:int=16) -> list[str]:
         # Render all sequences into one
         sumseq = ""
         for seq in seqs:
             sumseq += f">{seq.id}\n{seq.sequence}\n"
 
         # clustalout for stars
-        process = Popen(["mafft", "--quiet", "-"], stdin=PIPE, stdout=PIPE)
+        process = Popen(["mafft", "--quiet", "--auto", "-"], stdin=PIPE, stdout=PIPE)
         process.stdin.write(sumseq.encode())
 
         process_stdout = process.communicate()[0].decode("utf8")
@@ -38,22 +37,31 @@ class FASTA:
             aligned_fastas.append(
                 FASTA(split_process_stdout)
             )
+        with open("./peepeepoopoo.txt", "w+") as file:
+            file.write("".join([f.sequence+"\n" for f in aligned_fastas]))
         process.stdin.close()
 
         # Buffer one backwards and set everything to sequences
         ref_fasta = aligned_fastas[0].sequence
-        aligned_fastas = [fasta.sequence for fasta in aligned_fastas[1:]]
+        aligned_seq = [fasta.sequence for fasta in aligned_fastas[1:]]
 
-        for letter_index in range(0, len(ref_fasta) - 1):
-            for fasta in aligned_fastas:
-                # Match
+        for letter_index in range(search_sensitivity, len(ref_fasta) - search_sensitivity):
+            letter_index_score = 0
+            for fasta in aligned_seq:
+                # Make sure it's not blank
+                if fasta[letter_index] == "-":
+                    continue
+                # Matching letter? Skip
                 if fasta[letter_index] == ref_fasta[letter_index]:
                     continue
-                # Two differences in a row means that is not a single alteration. Continue
-                if fasta[letter_index + 1] != ref_fasta[letter_index + 1]:
-                    continue
+
+                # Check padding
+                if fasta[letter_index - search_sensitivity:letter_index] != ref_fasta[letter_index - search_sensitivity:letter_index] or \
+                    fasta[letter_index + 1:letter_index + search_sensitivity] != ref_fasta[letter_index + 1:letter_index + search_sensitivity]:
+                        continue
                 # A single difference found! Return index
-                return letter_index
+                return [fasta.sequence[letter_index] for fasta in aligned_fastas]
+        return []
 
 class FASTAFile(FASTA):
     # Cache filepath on creation
@@ -62,4 +70,4 @@ class FASTAFile(FASTA):
             raise FileNotFoundError(f"No such file at path {filepath}")
         # Divide the file by linebreak
         with open(filepath, "r") as file:
-            super().__init__(file.read())       
+            super().__init__(file.read())
