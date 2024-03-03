@@ -111,7 +111,7 @@
   
   .bottom-right-image {
     position: absolute; /* Position image absolutely for precise placement */
-    bottom: ; /* Position at bottom of the main container */
+    bottom: 1rem; /* Position at bottom of the main container */
     right: 25%; /* Position at right of the main container */
     z-index: -1; /* Set z-index to place behind the login section content */
   }
@@ -167,5 +167,10 @@
 
   #report-section {
     display: none;
+    border: 10px solid var(--viridian-lgreen); /* Add border for visual separation */
+    padding: 1rem;
+    border-radius: 10px; /* Add rounded corners */
+    margin: auto;
+
   }
   
