@@ -8,3 +8,6 @@ htmlcov/
 docs/_build/
 dist/
 venv/
+*.fasta
+*.env
+fasta/
