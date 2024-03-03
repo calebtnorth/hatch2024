@@ -1,0 +1,174 @@
+:root {
+    --viridian-dark: #3D1686;  /* Dark Green */
+    --viridian-green: #0ABB4D;  /* Green */
+    --viridian-lav: #DDCBFF; /* Lavender */
+    --viridian-lgreen: #C3EBB3;  /* Light Green */
+    --viridian-hover: #796893; /* Darker Green for hover */
+  }
+  
+  body {
+    background-color: var(--viridian-lav);
+    font-family: "DM Sans", Arial, sans-serif; /* Example font */
+    margin: 0; /* Remove default margin */
+  }
+  
+  header {
+    background-color: var(--viridian-dark);
+    color: #fff; /* White text for dark background */
+    padding: 1rem;
+    display: flex; /* Allow horizontal layout for logo and navigation */
+    justify-content: space-between; /* Distribute content horizontally */
+    align-items: center; /* Align logo and navigation vertically */
+  }
+  
+  .header-container {
+    display: flex; /* Allow horizontal layout for logo space and company name */
+    align-items: center; /* Align logo space and company name vertically */
+  }
+  
+  .logo-space {
+    width: 100px; /* Reserve space for the logo (adjust as needed) */
+  }
+  
+  h1 {
+    color: var(--viridian-green);
+    margin-bottom: 0.5rem;
+  }
+  
+  nav {
+    display: flex; /* Arrange menu items horizontally */
+  }
+  
+  nav ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+  }
+  
+  nav li {
+    margin-right: 1rem; /* Add space between menu items */
+  }
+  
+  nav a {
+    color: var(--viridian-green);
+    text-decoration: none; /* Remove underline from links */
+    padding: 0.5rem 1rem; /* Add some padding */
+  }
+  
+  nav a:hover {
+    color: var(--viridian-hover); /* Use defined hover color */
+    background-color: transparent; /* Maintain transparency on hover */
+  }
+  
+  .index-main {
+    display: flex; /* Make the main container a flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically (optional) */
+    display: flex;
+    padding: 2rem; /* Add some padding around content */
+    height: 400px;
+  }
+  
+  .login-section {
+    border: 10px solid var(--viridian-lgreen); /* Add border for visual separation */
+    padding: 1rem;
+    border-radius: 10px; /* Add rounded corners */
+    margin: auto;
+  }
+
+  .login-section label {
+    display: block; /* Display labels on their own line */
+    margin-bottom: 0.5rem; /* Add space between label and input */
+    font-weight: bold; /* Make labels bold for better visibility */
+  }
+  
+  .login-section input[type="text"],
+  .login-section input[type="password"] {
+    width: 100%; /* Make inputs full width */
+    padding: 0.5rem;
+    border: 1px solid #ccc; /* Add a light border */
+    border-radius: 3px; /* Add slightly rounded corners */
+  }
+  
+ .login-section button {
+  background-color: var(--viridian-green); /* Green button */
+  color: #fff; /* White text */
+  padding: 0.5rem 1rem; /* Padding */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Indicate clickable behavior */
+}
+
+.login-section button:hover {
+  background-color: var(--viridian-hover); /* Darker green on hover */
+}
+
+.top-left-image {
+    position: absolute; /* Position image absolutely for precise placement */
+    top: 200px; /* Position at top of the main container */
+    left: 25%; /* Position at left of the main container */
+    z-index: -1; /* Set z-index to place behind the login section */
+  }
+  
+  .bottom-right-image {
+    position: absolute; /* Position image absolutely for precise placement */
+    bottom: ; /* Position at bottom of the main container */
+    right: 25%; /* Position at right of the main container */
+    z-index: -1; /* Set z-index to place behind the login section content */
+  }
+  
+.form2 {
+    display: none; /* Hide the second form initially */
+  } 
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .hidden {
+    display: none; /* Ensure hidden forms are still hidden */
+  }
+  
+  .animate-out {
+    opacity: 0; /* Fade out animation */
+    transition: opacity 0.5s ease-in-out; /* Adjust transition properties as needed */
+  }
+  
+  .animate-in {
+    opacity: 1; /* Fade in animation */
+    transition: opacity 0.5s ease-in-out; /* Adjust transition properties as needed */
+  }
+  
+  
+  form {
+    margin-bottom: 1rem; /* Add space between forms */
+  }
+  
+  /* Add styles for individual form elements (labels, inputs, buttons) as needed */
+  
+  footer {
+    background-color: var(--viridian-dark);
+    color: #fff; /* White text for dark background */
+    padding: 1rem;
+    text-align: center;
+    margin-top: 100%;
+    margin-bottom: 0px;
+  }
+
+  .index- {
+    /* Styles for your page content */
+    opacity: 0; /* Initially hide all pages */
+    transition: opacity 0.5s ease-in-out; /* Transition for animation */
+  }
+  
+  .index-main .animate-in{
+    opacity: 1; /* Animate page to full opacity when in view */
+  }
+  
+  .error    {
+    background-color: rgb(255, 152, 152);
+    border: 5px solid black;
+  }
+
+  #report-section {
+    display: none;
+  }
+  
