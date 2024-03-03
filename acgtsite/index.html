@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Upload File</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+  <script src="js/validation.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-space"></div> <h1>Viridian</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="index-main">
+    <div class="login-section">
+      <div class="form1">
+      <h2>Login and Upload File</h2>
+      <form id="login-form" action="/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+
+        <button type="submit">Login</button>
+      </form>
+      </div>
+      <div class="form2">
+      <h2>Upload File </h2>
+      <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="file">Select file:</label>
+        <input type="file" id="biodata-file" name="file" required>
+        <br>
+
+        <button type="submit">Upload</button>
+        <span id="upload-message"></span>
+      </form>
+      </div>
+    </div>
+  </main>
+
+  <div class="space">
+  </div>
+
+  <section id="report-section">
+    <h2>Your Nutritional Reference Sheet</h2>
+    <p>This is where the report content will be displayed after processing your bioinformatics data.</p>
+  </section>
+  
+  <footer>
+    <p>&copy; 2024 Viridian</p>
+  </footer>
+
+  <script>
+      const uploadForm = document.getElementById('upload-form');
+      const uploadMessage = document.getElementById('upload-message');
+
+      uploadForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        // Add placeholder code for handling form submission
+        uploadMessage.textContent = 'Uploading file...';
+
+        // Replace with your actual form submission logic (e.g., sending data to backend)
+        // ...
+
+        // Simulate successful upload after a delay
+        setTimeout(() => {
+          uploadMessage.textContent = 'File uploaded successfully!';
+          // Optionally clear the form or perform other actions after successful upload
+        }, 1500);
+      });
+    </script>
+</body>
+</html>
