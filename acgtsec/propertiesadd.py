@@ -18,7 +18,7 @@ def Tree(srcPath, AID):
     global dstPath
     
     print("hello")
-    parentDir = os.getenv('FOREST_PATH')
+    parentDir = "/Users/calebnorth/Desktop/hatchdata/forest"
     path = os.path.join(parentDir, AID)
     try:
         os.makedirs(path)
@@ -36,8 +36,8 @@ def Tree(srcPath, AID):
 #Tree()
 def AEncrypt(filePath, AID, desDir):
     
-    for AIDFolder in os.listdir(os.getenv('FOREST_PATH')):
-        AIDForest = os.path.join(os.getenv('FOREST_PATH'), AIDFolder)
+    for AIDFolder in os.listdir("/Users/calebnorth/Desktop/hatchdata/forest"):
+        AIDForest = os.path.join("/Users/calebnorth/Desktop/hatchdata/forest", AIDFolder)
         for file in os.listdir(AIDForest):
             filePath = os.path.join(AIDForest, file)
             if file.endswith(".fasta"):
@@ -57,9 +57,9 @@ def Set1(uploadDir:str) -> list[str]:
     for file in os.listdir(setInStr):
         if file.endswith(".fasta"):
             AID = ''.join(str(secrets.randbelow(7)) for _ in range(6))
-            finDir = os.path.join(os.getenv('FOREST_PATH'), AID, 'encrypted',f'output{AID}.json')
+            finDir = os.path.join("/Users/calebnorth/Desktop/hatchdata/forest", AID, 'encrypted',f'output{AID}.json')
             filePath = os.path.join(setInStr, file)
-            desDir = os.path.join(os.getenv('FOREST_PATH'), AID, 'encrypted')
+            desDir = os.path.join("/Users/calebnorth/Desktop/hatchdata/forest", AID, 'encrypted')
             encryptedFilePaths.append(finDir)
             Tree(os.path.join(setInStr, file), AID)
             AEncrypt(filePath, AID, desDir)
@@ -107,7 +107,7 @@ def Write1(inputFile, AID, desDir):
         print(infile)
         data = infile.read()
 
-    outputDir = os.path.join(os.getenv('FOREST_PATH'), AID, 'encrypted')
+    outputDir = os.path.join("/Users/calebnorth/Desktop/hatchdata/forest", AID, 'encrypted')
     
     outputFileName = f'output{AID}.json'
     outputFile = os.path.join(desDir, outputDir, outputFileName)
@@ -131,7 +131,7 @@ def Remove():
     global dirs
     global files
     global root
-    DirName = os.getenv('FOREST_PATH')
+    DirName = "/Users/calebnorth/Desktop/hatchdata/forest"
     test = os.listdir(DirName)
     for root, dirs, files in os.walk(DirName):
         for item in files:

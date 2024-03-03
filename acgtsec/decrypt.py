@@ -46,7 +46,7 @@ def Decrypt(jsonFilePath, keyFilePath):
 
 #Decrypt(jsonFilePath, keyFilePath)
 def userCheck(username, password):
-    return username == "admin" & password == "PapaWhiskey1"
+    return username == "admin" and password == "PapaWhiskey1"
 
 db_file = 'client.db'
 table_name = 'client'

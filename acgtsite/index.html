@@ -68,26 +68,5 @@
   <footer>
     <p>&copy; 2024 Viridian</p>
   </footer>
-
-  <script>
-      const uploadForm = document.getElementById('upload-form');
-      const uploadMessage = document.getElementById('upload-message');
-
-      uploadForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Prevent default form submission
-
-        // Add placeholder code for handling form submission
-        uploadMessage.textContent = 'Uploading file...';
-
-        // Replace with your actual form submission logic (e.g., sending data to backend)
-        // ...
-
-        // Simulate successful upload after a delay
-        setTimeout(() => {
-          uploadMessage.textContent = 'File uploaded successfully!';
-          // Optionally clear the form or perform other actions after successful upload
-        }, 1500);
-      });
-    </script>
 </body>
 </html>

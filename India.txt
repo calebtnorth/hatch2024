@@ -1,0 +1,4 @@
+
+664515 is  Astro1_MTHFR.fasta
+463214 is  Astro1_MTHFR.fasta
+624314 is  Astro2_MTHFR.fasta

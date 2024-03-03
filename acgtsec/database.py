@@ -3,14 +3,13 @@ import sqlite3
 import time
 from sqlite3 import Error
 
-from propertiesadd import Set1, team
+from acgtsec.propertiesadd import Set1, team
 
 dir = os.getenv('UPLOAD_DIR')
 
-conn = sqlite3.connect('client.db')
-cur = conn.cursor()
-
 def makeTable(db_file, table_name):
+    conn = sqlite3.connect('../hatchdata/client.db')
+    cur = conn.cursor()
     try:
         cur.execute("""CREATE TABLE IF NOT EXISTS client (
             Num INTEGER PRIMARY KEY,
@@ -23,9 +22,13 @@ def makeTable(db_file, table_name):
         print("table made")
     except sqlite3.Error as e:
         print(f"Error creating table: {e}")
-    conn.commit
+    conn.commit()
+    conn.close()
 
 def newFileSignal(table_name, type):
+    conn = sqlite3.connect('../hatchdata/client.db')
+    cur = conn.cursor()
+    
     encryptedFilePaths = Set1(dir)
     TeamID = team()
     if encryptedFilePaths:
@@ -33,6 +36,9 @@ def newFileSignal(table_name, type):
         cur.execute(f"INSERT INTO {table_name} (GID, Fasta, TID) VALUES (?, ?, ?)", (type, encryptedFilePaths[0], TeamID[0]))
     else:
         print("no files")
+
+    conn.commit()
+    conn.close()
 
 def insertData(db_file, table_name, data):
     cur.execute(f"INSERT INTO {table_name} (Fasta, GID, TID) VALUES (?, ?, ?)", data)
@@ -84,36 +90,4 @@ def grabTID(db_file, table_name):
     except sqlite3.Error as e:
         print(f"Error accessing database: {e}")
     
-
-
-
-# Print the 'client' table from 'client.db'
-
-
-datatoInsert = ("ExampleFasta", 123, 456)
-# Example usage
-db_file = 'client.db'
-table_name = 'client'
-folder_path = os.getenv('FOREST_PATH')
-
-
-def run():
-    makeTable(db_file, table_name)
-    newFileSignal('client','MTFSA')
-    time.sleep(0.3)
-    print_table('client.db', 'client')
-
-run()
-print_table('client.db', 'client')
-
-conn.commit()
-conn.close()
-
-
-
-
-
-
-#cur.close()
-conn.close()
 

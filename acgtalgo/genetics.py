@@ -29,8 +29,3 @@ def generate_chemical_weight(fasta_paths:list[str], type:str) -> float:
     for letter in variants:
         chemical_score += float(COMPOUNDS[type.upper()]["variations"][letter*2])
     return 1.0 / (chemical_score / len(variants))
-
-
-
-
-

@@ -116,9 +116,6 @@
     z-index: -1; /* Set z-index to place behind the login section content */
   }
   
-.form2 {
-    display: none; /* Hide the second form initially */
-  } 
   h2 {
     margin-bottom: 1rem;
   }
