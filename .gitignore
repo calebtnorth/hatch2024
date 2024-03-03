@@ -8,6 +8,8 @@ htmlcov/
 docs/_build/
 dist/
 venv/
+upload/
+*.env
 .DS_Store
 *.fasta
 *.env
