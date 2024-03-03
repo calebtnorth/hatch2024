@@ -1,5 +1,50 @@
 document.addEventListener("DOMContentLoaded", function() {
-const form1 = document.getElementById("form1");
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const uploadForm = document.getElementById("upload-form"); // Assuming your form's ID
+  
+    uploadForm.addEventListener("submit", (event) => {
+      event.preventDefault(); // Prevent default form submission
+  
+      const fileInput = document.getElementById("biodata-file"); // Assuming your file input ID
+      const file = fileInput.files[0]; // Get the selected file
+  
+      if (!file) {
+        alert("Please select a bioinformatics data file!");
+        return; // Exit if no file is selected
+      }
+  
+      // Prepare data for sending (adjust based on your backend API requirements)
+      const formData = new FormData();
+      formData.append("biodata", file); // Assuming "biodata" is the expected field name on the backend
+  
+      // Send data to the backend (replace with your actual logic)
+      fetch("/api/process-biodata", {
+        method: "POST",
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log("Data sent successfully! Received response:", data);
+          // Display the report using the received data (see below)
+          displayReport(data);
+        })
+        .catch(error => {
+          console.error("Error sending data:", error);
+          // Handle errors during data processing or communication (e.g., user notification)
+        });
+    });
+  
+    // Function to display the report (replace with your specific logic)
+    function displayReport(reportData) {
+      const reportSection = document.getElementById('report-section');
+      // ... (Process and display the report content based on reportData)
+      reportSection.style.display = 'block'; // Make the report section visible
+    }
+  });
+  
+
+  const form1 = document.getElementById("form1");
 const form2 = document.getElementById("form2");
 const loginButton = document.querySelector(".login-section button"); // Assuming button within login-section
 
@@ -60,6 +105,8 @@ pages.forEach(page => {
 
   // If both fields are valid, allow form submission
   return true;
+
+  
 }
 
 // Add event listener to the login form (check for null first)
