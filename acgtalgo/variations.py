@@ -37,7 +37,7 @@ class FASTA:
             aligned_fastas.append(
                 FASTA(split_process_stdout)
             )
-        with open("./peepeepoopoo.txt", "w+") as file:
+        with open("./temp.txt", "w+") as file:
             file.write("".join([f.sequence+"\n" for f in aligned_fastas]))
         process.stdin.close()
 
